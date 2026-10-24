@@ -33,6 +33,10 @@ The service now includes comprehensive support for crypto assets and tokenized a
 
 The system tracks crypto-specific balance types (STAKED, LOCKED, PENDING_CONFIRMATION) and includes a price tracking system for crypto assets with historical data and multiple quote currencies.
 
+### Asset price writes
+
+Asset price mutations require a configured trusted issuer, audience, JWKS endpoint and the `accounts:asset-prices:write` scope. See [asset price write configuration and audit identity](docs/asset-price-writes.md). Public price reads remain available without a write token.
+
 ## Quick Start
 
 ### Prerequisites

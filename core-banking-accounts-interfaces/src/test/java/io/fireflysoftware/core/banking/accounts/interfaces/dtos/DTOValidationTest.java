@@ -17,24 +17,24 @@
 
 package io.fireflysoftware.core.banking.accounts.interfaces.dtos;
 
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.core.v1.AccountDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.core.v1.AccountBalanceDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.space.v1.AccountSpaceDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.crypto.v1.AssetPriceDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.notification.v1.AccountNotificationDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.parameter.v1.AccountParameterDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.restriction.v1.AccountRestrictionDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.provider.v1.AccountProviderDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.dtos.status.v1.AccountStatusHistoryDTO;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.core.v1.AccountTypeEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.core.v1.AccountStatusEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.core.v1.BalanceTypeEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.space.v1.AccountSpaceTypeEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.notification.v1.NotificationTypeEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.parameter.v1.ParamTypeEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.restriction.v1.RestrictionTypeEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.provider.v1.ProviderStatusEnum;
-import io.fireflysoftware.core.banking.accounts.interfaces.enums.status.v1.StatusCodeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.core.AccountDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.core.AccountBalanceDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.space.AccountSpaceDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.crypto.AssetPriceDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.notification.AccountNotificationDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.parameter.AccountParameterDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.restriction.AccountRestrictionDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.provider.AccountProviderDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.dtos.status.AccountStatusHistoryDTO;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.core.AccountTypeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.core.AccountStatusEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.core.BalanceTypeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.space.AccountSpaceTypeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.notification.NotificationTypeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.parameter.ParamTypeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.restriction.RestrictionTypeEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.provider.ProviderStatusEnum;
+import io.fireflysoftware.core.banking.accounts.interfaces.enums.status.StatusCodeEnum;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
