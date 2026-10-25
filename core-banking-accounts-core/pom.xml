@@ -17,6 +17,19 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-ledger-sdk</artifactId>
+            <version>26.10.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-security-api</artifactId>
+        </dependency>
         <!-- Internal modules -->
         <dependency>
             <groupId>io.fireflysoftware</groupId>

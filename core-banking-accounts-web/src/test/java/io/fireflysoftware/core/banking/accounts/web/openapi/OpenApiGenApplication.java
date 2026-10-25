@@ -16,21 +16,24 @@
 
 package io.fireflysoftware.core.banking.accounts.web.openapi;
 
+import io.fireflysoftware.core.banking.accounts.web.config.crypto.AssetPriceOpenApiConfiguration;
+
 import org.fireflyframework.web.openapi.EnableOpenApiGen;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 /**
- * Minimal Spring Boot application used only during the Maven build to expose
- * the OpenAPI spec via Springdoc. It scans the production controllers so that
- * Springdoc discovers their {@code @RestController} annotations and
- * {@code @OpenAPIDefinition} metadata.
+ * Minimal Spring Boot application used only during the Maven build to expose the OpenAPI spec via
+ * Springdoc. It scans the production controllers so that Springdoc discovers their
+ * {@code @RestController} annotations and {@code @OpenAPIDefinition} metadata.
  *
- * <p>This class lives under {@code src/test/java} and is never packaged into
- * the production artifact. It is activated by the {@code generate-openapi}
- * Maven profile with {@code useTestClasspath=true}.
+ * <p>This class lives under {@code src/test/java} and is never packaged into the production
+ * artifact. It is activated by the {@code generate-openapi} Maven profile with {@code
+ * useTestClasspath=true}.
  */
 @EnableOpenApiGen
+@Import(AssetPriceOpenApiConfiguration.class)
 @ComponentScan(basePackages = "io.fireflysoftware.core.banking.accounts.web.controllers")
 public class OpenApiGenApplication {
     public static void main(String[] args) {

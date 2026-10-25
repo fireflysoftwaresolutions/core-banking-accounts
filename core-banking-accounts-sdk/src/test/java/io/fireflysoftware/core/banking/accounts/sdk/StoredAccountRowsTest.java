@@ -32,6 +32,14 @@ import io.fireflysoftware.core.banking.accounts.web.AccountsApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.postgresql.PostgreSQLContainer;
+import com.github.dockerjava.api.model.ExposedPort;
+import com.github.dockerjava.api.model.PortBinding;
+import com.github.dockerjava.api.model.Ports;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -47,43 +55,61 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = AccountsApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
                 "spring.application.name=core-banking-accounts",
-                "spring.application.version=26.10.5",
+                "spring.application.version=26.10.6",
                 "spring.application.description=Accounts core",
                 "spring.application.team.name=Firefly Software Foundation",
                 "spring.application.team.email=dev@fireflysoftware.io",
-                "spring.r2dbc.url=r2dbc:postgresql://127.0.0.1:5432/firefly_accounts_it?sslMode=disable",
-                "spring.r2dbc.username=ancongui",
-                "spring.r2dbc.password=",
-                "spring.flyway.url=jdbc:postgresql://127.0.0.1:5432/firefly_accounts_it?sslMode=disable",
-                "spring.flyway.user=ancongui",
-                "spring.flyway.password="
+                "server.address=127.0.0.1"
         })
+@Testcontainers
 class StoredAccountRowsTest {
 
-    static {
-        System.setProperty("DB_HOST", "127.0.0.1");
-        System.setProperty("DB_PORT", "5432");
-        System.setProperty("DB_NAME", "firefly_accounts_it");
-        System.setProperty("DB_USERNAME", "ancongui");
-        System.setProperty("DB_PASSWORD", "");
-        System.setProperty("DB_SSL_MODE", "disable");
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "ancongui", "");
-             Statement statement = connection.createStatement()) {
-            statement.execute("CREATE DATABASE firefly_accounts_it");
-        } catch (SQLException exception) {
-            if (!"42P04".equals(exception.getSQLState()) && !"23505".equals(exception.getSQLState())) {
-                throw new IllegalStateException(exception);
-            }
-        }
+    @Container
+    static final PostgreSQLContainer DATABASE = new PostgreSQLContainer("postgres:17-alpine")
+            .withDatabaseName("account_qualification")
+            .withUsername("account_test")
+            .withPassword("synthetic-disposable-test-password")
+            .withCreateContainerCmdModifier(command -> command.getHostConfig().withPortBindings(
+                    new PortBinding(Ports.Binding.bindIpAndPort("127.0.0.1", 0), ExposedPort.tcp(5432))));
+
+    @DynamicPropertySource
+    static void databaseProperties(DynamicPropertyRegistry registry) {
+        registry.add("DB_HOST", DATABASE::getHost);
+        registry.add("DB_PORT", () -> DATABASE.getMappedPort(5432));
+        registry.add("DB_NAME", DATABASE::getDatabaseName);
+        registry.add("DB_USERNAME", DATABASE::getUsername);
+        registry.add("DB_PASSWORD", DATABASE::getPassword);
+        registry.add("DB_SSL_MODE", () -> "disable");
+        registry.add("spring.r2dbc.url", () -> "r2dbc:postgresql://" + DATABASE.getHost() + ":"
+                + DATABASE.getMappedPort(5432) + "/" + DATABASE.getDatabaseName());
+        registry.add("spring.r2dbc.username", DATABASE::getUsername);
+        registry.add("spring.r2dbc.password", DATABASE::getPassword);
+        registry.add("spring.flyway.url", DATABASE::getJdbcUrl);
+        registry.add("spring.flyway.user", DATABASE::getUsername);
+        registry.add("spring.flyway.password", DATABASE::getPassword);
     }
 
     @LocalServerPort
     private int port;
 
+    @org.springframework.beans.factory.annotation.Autowired
+    private org.springframework.r2dbc.core.DatabaseClient database;
+
+    @Test
+    void jdbcAndCustomR2dbcConnectionsUseTheSameDisposableDatabaseAndRole() throws Exception {
+        assertThat(DATABASE.getMappedPort(5432)).isNotEqualTo(5432);
+        try (Connection connection = databaseConnection()) {
+            assertThat(connection.getMetaData().getUserName()).isEqualTo(DATABASE.getUsername());
+        }
+        var identity = database.sql("SELECT current_database() AS name, current_user AS username")
+                .map((row, metadata) -> List.of(row.get("name", String.class), row.get("username", String.class)))
+                .one().block(java.time.Duration.ofSeconds(10));
+        assertThat(identity).containsExactly(DATABASE.getDatabaseName(), DATABASE.getUsername());
+    }
+
     @Test
     void servicingMandateIsSavedAndReadBackThroughTheSdk() throws Exception {
-        try (Connection connection = DriverManager.getConnection(
-                "jdbc:postgresql://127.0.0.1:5432/firefly_accounts_it", "ancongui", "");
+        try (Connection connection = databaseConnection();
              Statement statement = connection.createStatement()) {
             statement.execute("""
                     INSERT INTO account (account_id, contract_id, account_number, account_type, currency, open_date, account_status, branch_id)
@@ -130,8 +156,7 @@ class StoredAccountRowsTest {
     @Test
     void statementLimitInterestTermAndSweepAreSavedAndReadBack() throws Exception {
         UUID accountId = UUID.fromString("aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1");
-        try (Connection connection = DriverManager.getConnection(
-                "jdbc:postgresql://127.0.0.1:5432/firefly_accounts_it", "ancongui", "");
+        try (Connection connection = databaseConnection();
              Statement statement = connection.createStatement()) {
             statement.execute("""
                     INSERT INTO account (account_id, contract_id, account_number, account_type, currency, open_date, account_status, branch_id)
@@ -189,5 +214,11 @@ class StoredAccountRowsTest {
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath("http://127.0.0.1:" + port);
         return apiClient;
+    }
+
+    private Connection databaseConnection() throws SQLException {
+        Connection connection = DriverManager.getConnection(DATABASE.getJdbcUrl(), DATABASE.getUsername(), DATABASE.getPassword());
+        assertThat(connection.getCatalog()).isEqualTo(DATABASE.getDatabaseName());
+        return connection;
     }
 }
