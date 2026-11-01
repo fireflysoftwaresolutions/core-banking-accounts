@@ -28,7 +28,7 @@ class AccountFundsPersistenceServiceTest {
             mock(AccountMoneyEnrollmentRepository.class);
     private final AccountMoneyActionRepository actions = mock(AccountMoneyActionRepository.class);
     private final FundsNativeRepository nativeRepository = mock(FundsNativeRepository.class);
-    private final FundsDatabaseContext context = mock(FundsDatabaseContext.class);
+    private final FundsDatabaseContextImpl context = mock(FundsDatabaseContextImpl.class);
     private final ReactiveTransactionManager manager = mock(ReactiveTransactionManager.class);
     private final SecurityPrincipal principal = mock(SecurityPrincipal.class);
     private final LedgerFundsPort ledger = mock(LedgerFundsPort.class);

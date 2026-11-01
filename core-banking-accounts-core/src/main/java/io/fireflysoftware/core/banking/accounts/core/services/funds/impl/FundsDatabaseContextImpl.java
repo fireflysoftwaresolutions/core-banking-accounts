@@ -29,11 +29,11 @@ import java.util.Arrays;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Component
-public final class FundsDatabaseContext {
+@Component("fundsDatabaseContext")
+public final class FundsDatabaseContextImpl {
     private final FundsNativeRepository nativeRepository;
 
-    public FundsDatabaseContext(FundsNativeRepository nativeRepository) {
+    public FundsDatabaseContextImpl(FundsNativeRepository nativeRepository) {
         this.nativeRepository = nativeRepository;
     }
 
@@ -46,7 +46,7 @@ public final class FundsDatabaseContext {
                     case "CONTROL" -> "funds:control";
                     default -> throw fail(403, "SERVER_FUNDS_PURPOSE_REQUIRED");
                 };
-        FundsPolicy.require(p, tenant, scope, accounts);
+        FundsPolicyImpl.require(p, tenant, scope, accounts);
         if (accounts.length < 1 || accounts.length > 1000)
             return Mono.error(fail(403, "BOUNDED_FUNDS_RESOURCES_REQUIRED"));
         String resourceJson =

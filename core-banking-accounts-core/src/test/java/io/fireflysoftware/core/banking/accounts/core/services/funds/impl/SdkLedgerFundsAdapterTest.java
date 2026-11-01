@@ -29,7 +29,7 @@ class SdkLedgerFundsAdapterTest {
     String rejection;
     HttpServer server;
 
-    SdkLedgerFundsAdapter fixture() throws Exception {
+    SdkLedgerFundsAdapterImpl fixture() throws Exception {
         server=HttpServer.create(new InetSocketAddress("127.0.0.1",0),0);
         server.createContext("/token",exchange->{
             String form=new String(exchange.getRequestBody().readAllBytes(),StandardCharsets.UTF_8);
@@ -49,7 +49,7 @@ class SdkLedgerFundsAdapterTest {
             byte[] bytes=body.getBytes(StandardCharsets.UTF_8);exchange.getResponseHeaders().set("Content-Type","application/json");exchange.sendResponseHeaders(status,bytes.length);exchange.getResponseBody().write(bytes);exchange.close();
         });
         server.start();String base="http://127.0.0.1:"+server.getAddress().getPort();
-        return new SdkLedgerFundsAdapter(base,base+"/token","owned-client","owned-secret","funds:control",true);
+        return new SdkLedgerFundsAdapterImpl(base,base+"/token","owned-client","owned-secret","funds:control",true);
     }
     @Test void realGeneratedSdkBlocksBeforeClosureAndUsesStableDistinctActionIds() throws Exception {
         try {var adapter=fixture();UUID action=UUID.randomUUID();adapter.apply("owned",enrollment,action,Control.CLOSED).block(Duration.ofSeconds(5));

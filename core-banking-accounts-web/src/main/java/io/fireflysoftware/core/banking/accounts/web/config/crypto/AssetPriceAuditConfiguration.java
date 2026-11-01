@@ -10,8 +10,8 @@ import java.time.Clock;
 @Configuration(proxyBeanMethods = false)
 public class AssetPriceAuditConfiguration {
     @Bean
-    public AssetPriceActorCallback assetPriceActorCallback(
+    public AssetPriceActorCallbackImpl assetPriceActorCallback(
             SecurityContextPort contexts, @Value("${assets.security.issuer:}") String issuer) {
-        return new AssetPriceActorCallback(contexts, issuer, Clock.systemUTC());
+        return new AssetPriceActorCallbackImpl(contexts, issuer, Clock.systemUTC());
     }
 }

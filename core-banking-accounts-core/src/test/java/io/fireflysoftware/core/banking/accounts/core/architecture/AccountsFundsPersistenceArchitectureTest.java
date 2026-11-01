@@ -14,7 +14,7 @@ class AccountsFundsPersistenceArchitectureTest {
                 Path.of(
                         "src/main/java/io/fireflysoftware/core/banking/accounts/core/services/funds/impl");
         for (String file :
-                new String[] {"AccountFundsServiceImpl.java", "FundsDatabaseContext.java"}) {
+                new String[] {"AccountFundsServiceImpl.java", "FundsDatabaseContextImpl.java"}) {
             assertThat(Files.readString(root.resolve(file)))
                     .as(file)
                     .doesNotContain("DatabaseClient", ".sql(");

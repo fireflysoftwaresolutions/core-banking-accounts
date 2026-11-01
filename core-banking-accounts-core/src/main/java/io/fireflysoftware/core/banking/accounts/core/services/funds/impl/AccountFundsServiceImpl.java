@@ -40,7 +40,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
     private final AccountMoneyEnrollmentRepository enrollments;
     private final AccountMoneyActionRepository actions;
     private final FundsNativeRepository nativeRepository;
-    private final FundsDatabaseContext context;
+    private final FundsDatabaseContextImpl context;
     private final TransactionalOperator tx;
     private final ObjectProvider<LedgerFundsPort> ledger;
 
@@ -50,7 +50,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
             FundsNativeRepository nativeRepository,
             ReactiveTransactionManager manager,
             ObjectProvider<LedgerFundsPort> ledger,
-            FundsDatabaseContext context) {
+            FundsDatabaseContextImpl context) {
         this.enrollments = enrollments;
         this.actions = actions;
         this.nativeRepository = nativeRepository;
@@ -63,17 +63,17 @@ public class AccountFundsServiceImpl implements AccountFundsService {
     public Mono<Enrollment> begin(SecurityPrincipal p, String tenant, UUID account, Begin input) {
         return Mono.defer(
                 () -> {
-                    FundsPolicy.require(p, tenant, "funds:enroll", account);
+                    FundsPolicyImpl.require(p, tenant, "funds:enroll", account);
                     if (input == null || input.enrollmentId() == null || input.kind() == null)
                         return Mono.error(fail(400, "ENROLLMENT_ID_AND_KIND_REQUIRED"));
-                    FundsPolicy.require(p, tenant, "funds:tenant-bind", account);
+                    FundsPolicyImpl.require(p, tenant, "funds:tenant-bind", account);
                     if (input.kind() == Kind.BANK_CONTROL)
-                        FundsPolicy.require(p, tenant, "funds:bank-enroll", account);
+                        FundsPolicyImpl.require(p, tenant, "funds:bank-enroll", account);
                     return context.establish(p, tenant, "ENROLL", account)
                             .then(lockAccount(account))
                             .doOnNext(
                                     row ->
-                                            FundsPolicy.enrollment(
+                                            FundsPolicyImpl.enrollment(
                                                     p,
                                                     tenant,
                                                     account,
@@ -109,7 +109,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
     public Mono<Enrollment> link(SecurityPrincipal p, String tenant, UUID account, Link input) {
         return Mono.defer(
                 () -> {
-                    FundsPolicy.require(p, tenant, "funds:link", account);
+                    FundsPolicyImpl.require(p, tenant, "funds:link", account);
                     return context.establish(p, tenant, "LINK", account)
                             .then(read(tenant, account, true))
                             .flatMap(
@@ -133,7 +133,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
     public Mono<Enrollment> verify(SecurityPrincipal p, String tenant, UUID account) {
         return Mono.defer(
                 () -> {
-                    FundsPolicy.require(p, tenant, "funds:verify", account);
+                    FundsPolicyImpl.require(p, tenant, "funds:verify", account);
                     return context.establish(p, tenant, "VERIFY", account)
                             .then(read(tenant, account, false))
                             .map(this::toContract);
@@ -146,7 +146,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
             SecurityPrincipal p, String tenant, UUID account, Manage input) {
         return Mono.defer(
                 () -> {
-                    FundsPolicy.require(p, tenant, "funds:control", account);
+                    FundsPolicyImpl.require(p, tenant, "funds:control", account);
                     if (input == null
                             || input.actionId() == null
                             || input.expectedVersion() == null
@@ -176,7 +176,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
                                                 .then(
                                                         Mono.defer(
                                                                 () -> {
-                                                                    FundsPolicy.require(
+                                                                    FundsPolicyImpl.require(
                                                                             p,
                                                                             tenant,
                                                                             "funds:control",
@@ -189,7 +189,7 @@ public class AccountFundsServiceImpl implements AccountFundsService {
                                                 .onErrorResume(
                                                         LedgerFundsPort.ClosureRejected.class,
                                                         error -> {
-                                                            FundsPolicy.require(
+                                                            FundsPolicyImpl.require(
                                                                     p,
                                                                     tenant,
                                                                     "funds:control",

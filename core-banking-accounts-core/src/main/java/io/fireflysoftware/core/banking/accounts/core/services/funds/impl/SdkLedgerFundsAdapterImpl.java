@@ -38,12 +38,12 @@ import java.time.Duration;
 import java.util.Set;
 import java.util.UUID;
 
-@Component
-public final class SdkLedgerFundsAdapter implements LedgerFundsPort {
+@Component("sdkLedgerFundsAdapter")
+public final class SdkLedgerFundsAdapterImpl implements LedgerFundsPort {
     private final OAuth2ClientHelper oauth;
     private final String baseUrl, scopes;
 
-    public SdkLedgerFundsAdapter(
+    public SdkLedgerFundsAdapterImpl(
             @Value("${funds.ledger.base-url:}") String baseUrl,
             @Value("${funds.ledger.token-uri:}") String tokenUri,
             @Value("${funds.ledger.client-id:}") String clientId,

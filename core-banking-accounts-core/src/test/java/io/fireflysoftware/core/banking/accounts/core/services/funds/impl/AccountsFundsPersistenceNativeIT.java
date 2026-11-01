@@ -46,7 +46,7 @@ class AccountsFundsPersistenceNativeIT {
     private AccountMoneyEnrollmentRepository enrollments;
     private AccountMoneyActionRepository actions;
     private FundsNativeRepository nativeRepository;
-    private FundsDatabaseContext context;
+    private FundsDatabaseContextImpl context;
     private TransactionalOperator tx;
     private RecordingLedger ledger;
     private SecurityPrincipal principal;
@@ -83,7 +83,7 @@ class AccountsFundsPersistenceNativeIT {
     @Profile("accounts-funds-native-fixture")
     @EnableTransactionManagement
     @EnableR2dbcRepositories(basePackageClasses = AccountMoneyEnrollmentRepository.class)
-    @Import({AccountFundsServiceImpl.class, FundsDatabaseContext.class})
+    @Import({AccountFundsServiceImpl.class, FundsDatabaseContextImpl.class})
     static class Database
             extends io.fireflysoftware.core.banking.accounts.models.config.R2dbcConfiguration {
         @Bean
@@ -176,7 +176,7 @@ class AccountsFundsPersistenceNativeIT {
         enrollments = application.getBean(AccountMoneyEnrollmentRepository.class);
         actions = application.getBean(AccountMoneyActionRepository.class);
         nativeRepository = application.getBean(FundsNativeRepository.class);
-        context = application.getBean(FundsDatabaseContext.class);
+        context = application.getBean(FundsDatabaseContextImpl.class);
         tx = TransactionalOperator.create(application.getBean(ReactiveTransactionManager.class));
         ledger = application.getBean(RecordingLedger.class);
         ledger.calls = 0;

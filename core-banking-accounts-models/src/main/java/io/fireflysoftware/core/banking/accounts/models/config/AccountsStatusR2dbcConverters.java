@@ -15,11 +15,11 @@ public final class AccountsStatusR2dbcConverters {
     private AccountsStatusR2dbcConverters() {}
 
     public static List<Object> converters() {
-        return List.of(new FundsStatusWriter());
+        return List.of(new FundsStatusWriterImpl());
     }
 
     @WritingConverter
-    private static class FundsStatusWriter implements Converter<FundsAccountStatus, Parameter> {
+    private static class FundsStatusWriterImpl implements Converter<FundsAccountStatus, Parameter> {
         public Parameter convert(FundsAccountStatus source) {
             return Parameters.in(PostgresqlObjectId.UNSPECIFIED, source.name());
         }

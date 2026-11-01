@@ -13,12 +13,12 @@ import reactor.core.publisher.Mono;
 
 import java.time.Clock;
 
-public final class AssetPriceActorCallback implements BeforeConvertCallback<AssetPrice>, Ordered {
+public final class AssetPriceActorCallbackImpl implements BeforeConvertCallback<AssetPrice>, Ordered {
     private final SecurityContextPort contexts;
     private final String issuer;
     private final Clock clock;
 
-    public AssetPriceActorCallback(SecurityContextPort contexts, String issuer, Clock clock) {
+    public AssetPriceActorCallbackImpl(SecurityContextPort contexts, String issuer, Clock clock) {
         this.contexts = contexts;
         this.issuer = issuer;
         this.clock = clock;

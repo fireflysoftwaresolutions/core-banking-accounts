@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * Allowed moves for an account. A draft is the only status that can be removed.
  */
-final class AccountLifecycle {
+final class AccountLifecycleImpl {
 
     private static final Map<AccountStatusEnum, Set<AccountStatusEnum>> ALLOWED = Map.of(
             AccountStatusEnum.DRAFT, EnumSet.of(AccountStatusEnum.OPEN),
@@ -36,7 +36,7 @@ final class AccountLifecycle {
             AccountStatusEnum.DORMANT, EnumSet.of(AccountStatusEnum.OPEN, AccountStatusEnum.CLOSED)
     );
 
-    private AccountLifecycle() {
+    private AccountLifecycleImpl() {
     }
 
     static boolean canTransition(AccountStatusEnum from, AccountStatusEnum to) {

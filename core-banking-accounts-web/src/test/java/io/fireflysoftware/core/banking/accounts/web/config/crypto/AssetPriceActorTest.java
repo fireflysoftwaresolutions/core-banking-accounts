@@ -67,7 +67,7 @@ class AssetPriceActorTest {
         var contexts = mock(SecurityContextPort.class);
         var verified = principal("verified-writer", ISSUER, NOW.plusSeconds(1), true);
         when(contexts.currentPrincipal()).thenReturn(Mono.just(verified));
-        var callback = new AssetPriceActorCallback(contexts, ISSUER, CLOCK);
+        var callback = new AssetPriceActorCallbackImpl(contexts, ISSUER, CLOCK);
         var fresh = new AssetPrice();
         fresh.setCreatedBy("ignored-client");
         fresh.setDateCreated(LocalDateTime.of(2000, 1, 1, 0, 0));
@@ -93,7 +93,7 @@ class AssetPriceActorTest {
         when(contexts.currentPrincipal()).thenReturn(Mono.empty());
         assertThatThrownBy(
                         () ->
-                                new AssetPriceActorCallback(contexts, ISSUER, CLOCK)
+                                new AssetPriceActorCallbackImpl(contexts, ISSUER, CLOCK)
                                         .onBeforeConvert(
                                                 new AssetPrice(),
                                                 SqlIdentifier.unquoted("asset_price"))

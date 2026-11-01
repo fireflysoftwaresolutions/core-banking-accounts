@@ -103,7 +103,7 @@ public class AccountServiceImpl implements AccountService {
                     AccountStatusEnum next = existingAccount.getAccountStatus() != null
                             ? existingAccount.getAccountStatus()
                             : current;
-                    if (!AccountLifecycle.canTransition(current, next)) {
+                    if (!AccountLifecycleImpl.canTransition(current, next)) {
                         return Mono.error(new IllegalStateException(
                                 "Account " + accountId + " cannot move from " + current + " to " + next));
                     }
