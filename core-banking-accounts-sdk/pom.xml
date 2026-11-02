@@ -18,13 +18,6 @@
     </properties>
 
     <dependencies>
-        <!-- Web module for OpenAPI spec -->
-        <dependency>
-            <groupId>io.fireflysoftware</groupId>
-            <artifactId>core-banking-accounts-web</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- OpenAPI / Jackson — versions managed by fireflyframework-parent BOM -->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>

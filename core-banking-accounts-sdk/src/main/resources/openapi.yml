@@ -1,16 +1,10 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
-  title: core-banking-accounts
-  description: Banking Accounts Core Application
-  contact:
-    name: Firefly Software Foundation
-    email: dev@fireflysoftware.io
-  version: 1.0.0
+  title: OpenAPI definition
+  version: v0
 servers:
-- url: https://openplatform.fireflysoftware.io/accounts
-  description: Development Environment
-- url: /
-  description: Local Development Environment
+- url: ""
+  description: Generated server url
 tags:
 - name: Account Notifications
   description: APIs for managing account notifications and alerts
@@ -1407,10 +1401,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -1418,10 +1412,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -1438,9 +1432,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -1577,10 +1571,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -1588,10 +1582,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -1608,9 +1602,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -1728,10 +1722,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -1739,10 +1733,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -1759,9 +1753,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -1911,10 +1905,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -1922,10 +1916,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -1942,9 +1936,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -2025,10 +2019,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -2036,10 +2030,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -2056,9 +2050,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -2170,10 +2164,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -2181,10 +2175,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -2201,9 +2195,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -2385,10 +2379,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -2396,10 +2390,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -2416,9 +2410,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -2680,6 +2674,11 @@ paths:
         criteria.
       operationId: filterAccountSpaces
       parameters:
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestAccountSpaceDTO"
       - name: X-Idempotency-Key
         in: header
         description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
@@ -2689,12 +2688,6 @@ paths:
         required: false
         schema:
           type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FilterRequestAccountSpaceDTO"
-        required: true
       responses:
         "200":
           description: OK
@@ -2781,6 +2774,11 @@ paths:
         filter criteria.
       operationId: filterAccountRestrictions
       parameters:
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestAccountRestrictionDTO"
       - name: X-Idempotency-Key
         in: header
         description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
@@ -2790,12 +2788,6 @@ paths:
         required: false
         schema:
           type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FilterRequestAccountRestrictionDTO"
-        required: true
       responses:
         "200":
           description: Successfully retrieved the restrictions
@@ -2914,6 +2906,11 @@ paths:
         filter criteria.
       operationId: filterAccountNotifications
       parameters:
+      - name: filterRequest
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/FilterRequestAccountNotificationDTO"
       - name: X-Idempotency-Key
         in: header
         description: "Optional retry key for scoped POST, PUT, PATCH, and DELETE response\
@@ -2923,12 +2920,6 @@ paths:
         required: false
         schema:
           type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FilterRequestAccountNotificationDTO"
-        required: true
       responses:
         "200":
           description: Successfully retrieved the notifications
@@ -3029,10 +3020,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -3040,10 +3031,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -3060,9 +3051,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -3162,10 +3153,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -3173,10 +3164,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -3193,9 +3184,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -3242,10 +3233,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -3253,10 +3244,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -3273,9 +3264,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -3351,10 +3342,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -3362,10 +3353,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -3382,9 +3373,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -3714,10 +3705,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         example: 0
       - name: pageSize
         in: query
@@ -3725,10 +3716,10 @@ paths:
         required: false
         schema:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         example: 10
       - name: sortBy
         in: query
@@ -3745,9 +3736,9 @@ paths:
         required: false
         schema:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
         example: DESC
       - name: X-Idempotency-Key
         in: header
@@ -4543,6 +4534,12 @@ paths:
 components:
   schemas:
     AssetPriceDTO:
+      required:
+      - asOfDatetime
+      - assetSymbol
+      - price
+      - priceSource
+      - quoteCurrency
       type: object
       properties:
         dateCreated:
@@ -4558,35 +4555,33 @@ components:
           format: uuid
           readOnly: true
         assetSymbol:
-          type: string
           maxLength: 20
           minLength: 0
           pattern: "^[A-Z0-9]+$"
-        quoteCurrency:
           type: string
+        quoteCurrency:
           maxLength: 10
           minLength: 1
           pattern: "^[A-Z0-9]+$"
+          type: string
         price:
-          type: number
-          exclusiveMinimum: 0.0
+          multipleOf: 0.000000000000000001
           maximum: 999999999999999999.999999999999999999
           minimum: 0
-          multipleOf: 0.000000000000000001
+          exclusiveMinimum: true
+          type: number
         asOfDatetime:
           type: string
           format: date-time
         priceSource:
-          type: string
           maxLength: 50
           minLength: 0
-      required:
-      - asOfDatetime
-      - assetSymbol
-      - price
-      - priceSource
-      - quoteCurrency
+          type: string
     AccountStatusHistoryDTO:
+      required:
+      - accountId
+      - statusCode
+      - statusStartDatetime
       type: object
       properties:
         dateCreated:
@@ -4619,14 +4614,14 @@ components:
           type: string
           format: date-time
         reason:
-          type: string
           maxLength: 500
           minLength: 0
+          type: string
+    AccountProviderDTO:
       required:
       - accountId
-      - statusCode
-      - statusStartDatetime
-    AccountProviderDTO:
+      - providerName
+      - status
       type: object
       properties:
         dateCreated:
@@ -4645,13 +4640,13 @@ components:
           type: string
           format: uuid
         providerName:
-          type: string
           maxLength: 100
           minLength: 0
+          type: string
         externalReference:
-          type: string
           maxLength: 100
           minLength: 0
+          type: string
         status:
           type: string
           enum:
@@ -4662,11 +4657,12 @@ components:
         accountSpaceId:
           type: string
           format: uuid
+    AccountParameterDTO:
       required:
       - accountId
-      - providerName
-      - status
-    AccountParameterDTO:
+      - effectiveDate
+      - paramType
+      - paramValue
       type: object
       properties:
         dateCreated:
@@ -4691,12 +4687,13 @@ components:
           - OVERDRAFT_LIMIT
           - INTEREST_RATE
         paramValue:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         paramUnit:
-          type: string
           maxLength: 20
           minLength: 0
+          type: string
         effectiveDate:
           type: string
           format: date-time
@@ -4704,15 +4701,15 @@ components:
           type: string
           format: date-time
         description:
-          type: string
           maxLength: 500
           minLength: 0
+          type: string
+    AccountBalanceDTO:
       required:
       - accountId
-      - effectiveDate
-      - paramType
-      - paramValue
-    AccountBalanceDTO:
+      - asOfDatetime
+      - balanceAmount
+      - balanceType
       type: object
       properties:
         dateCreated:
@@ -4748,32 +4745,34 @@ components:
           type: string
           format: date-time
         assetSymbol:
-          type: string
           maxLength: 10
           minLength: 0
           pattern: "^[A-Z0-9]*$"
-        assetDecimals:
           type: string
+        assetDecimals:
           maxLength: 2
           minLength: 0
           pattern: "^[0-9]*$"
-        transactionHash:
           type: string
+        transactionHash:
           maxLength: 100
           minLength: 0
+          type: string
         confirmations:
-          type: integer
-          format: int32
           maximum: 999999
           minimum: 0
-      required:
-      - accountId
-      - asOfDatetime
-      - balanceAmount
-      - balanceType
+          type: integer
+          format: int32
     AccountDTO:
+      required:
+      - accountNumber
+      - accountStatus
+      - accountType
+      - branchId
+      - contractId
+      - currency
+      - openDate
       type: object
-      description: Data for the new account
       properties:
         dateCreated:
           type: string
@@ -4791,9 +4790,9 @@ components:
           type: string
           format: uuid
         accountNumber:
-          type: string
           maxLength: 50
           minLength: 0
+          type: string
         accountType:
           type: string
           enum:
@@ -4818,10 +4817,10 @@ components:
           - STABLECOIN
           - NFT_COLLECTION
         currency:
-          type: string
           maxLength: 3
           minLength: 3
           pattern: "^[A-Z]{3}$"
+          type: string
         openDate:
           type: string
           format: date
@@ -4840,9 +4839,9 @@ components:
           type: string
           format: uuid
         description:
-          type: string
           maxLength: 500
           minLength: 0
+          type: string
         accountSubType:
           type: string
           enum:
@@ -4948,40 +4947,39 @@ components:
           - SPECIFIC_DATE
           - NONE
         minimumBalance:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         overdraftLimit:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         walletAddress:
-          type: string
           maxLength: 100
           minLength: 0
-        blockchainNetwork:
           type: string
+        blockchainNetwork:
           maxLength: 50
           minLength: 0
-        tokenContractAddress:
           type: string
+        tokenContractAddress:
           maxLength: 100
           minLength: 0
-        tokenStandard:
           type: string
+        tokenStandard:
           maxLength: 20
           minLength: 0
+          type: string
         isCustodial:
           type: boolean
-      required:
-      - accountNumber
-      - accountStatus
-      - accountType
-      - branchId
-      - contractId
-      - currency
-      - openDate
+      description: Data for the new account
     AccountSpaceDTO:
+      required:
+      - accountId
+      - balance
+      - spaceName
+      - spaceType
       type: object
-      description: Data for the new account space
       properties:
         dateCreated:
           type: string
@@ -4999,9 +4997,9 @@ components:
           type: string
           format: uuid
         spaceName:
-          type: string
           maxLength: 100
           minLength: 0
+          type: string
         spaceType:
           type: string
           enum:
@@ -5012,27 +5010,29 @@ components:
           - GOALS
           - CUSTOM
         balance:
-          type: number
           minimum: 0.0
-        targetAmount:
+          exclusiveMinimum: false
           type: number
-          exclusiveMinimum: 0.0
+        targetAmount:
+          minimum: 0.0
+          exclusiveMinimum: true
+          type: number
         targetDate:
           type: string
           format: date-time
         iconId:
-          type: string
           maxLength: 50
           minLength: 0
-        colorCode:
           type: string
+        colorCode:
           maxLength: 7
           minLength: 0
           pattern: "^#[0-9A-Fa-f]{6}$"
-        description:
           type: string
+        description:
           maxLength: 500
           minLength: 0
+          type: string
         isVisible:
           type: boolean
         goalProgressPercentage:
@@ -5086,12 +5086,14 @@ components:
           type: string
           format: date-time
           readOnly: true
+      description: Data for the new account space
+    AccountRestrictionDTO:
       required:
       - accountId
-      - balance
-      - spaceName
-      - spaceType
-    AccountRestrictionDTO:
+      - appliedBy
+      - reason
+      - restrictionType
+      - startDateTime
       type: object
       properties:
         dateCreated:
@@ -5143,37 +5145,38 @@ components:
           type: string
           format: date-time
         restrictedAmount:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         referenceNumber:
-          type: string
           maxLength: 100
           minLength: 0
-        reason:
           type: string
+        reason:
           maxLength: 500
           minLength: 0
+          type: string
         appliedBy:
-          type: string
           maxLength: 100
           minLength: 0
+          type: string
         removedBy:
-          type: string
           maxLength: 100
           minLength: 0
-        notes:
           type: string
+        notes:
           maxLength: 1000
           minLength: 0
+          type: string
         isActive:
           type: boolean
+    AccountNotificationDTO:
       required:
       - accountId
-      - appliedBy
-      - reason
-      - restrictionType
-      - startDateTime
-    AccountNotificationDTO:
+      - creationDateTime
+      - message
+      - notificationType
+      - title
       type: object
       properties:
         dateCreated:
@@ -5219,13 +5222,13 @@ components:
           - PARAMETER_CHANGE
           - ACCOUNT_CLOSURE
         title:
-          type: string
           maxLength: 200
           minLength: 0
-        message:
           type: string
+        message:
           maxLength: 1000
           minLength: 0
+          type: string
         creationDateTime:
           type: string
           format: date-time
@@ -5238,36 +5241,31 @@ components:
           type: string
           format: date-time
         priority:
-          type: integer
-          format: int32
           maximum: 10
           minimum: 1
+          type: integer
+          format: int32
         deliveryChannels:
-          type: string
           maxLength: 100
           minLength: 0
+          type: string
         eventReference:
-          type: string
           maxLength: 100
           minLength: 0
-        relatedAmount:
-          type: number
-          minimum: 0.0
-        actionUrl:
           type: string
+        relatedAmount:
+          minimum: 0.0
+          exclusiveMinimum: false
+          type: number
+        actionUrl:
           maxLength: 500
           minLength: 0
           pattern: ^(https?://.*)?$
-        actionText:
           type: string
+        actionText:
           maxLength: 100
           minLength: 0
-      required:
-      - accountId
-      - creationDateTime
-      - message
-      - notificationType
-      - title
+          type: string
     Begin:
       type: object
       properties:
@@ -5502,71 +5500,68 @@ components:
           type: boolean
         includeInheritedFields:
           type: boolean
+      description: Filter options for customizing filter behavior
     FilterRequestAccountDTO:
+      required:
+      - pagination
       type: object
-      description: Generic filter request that includes both filter criteria and pagination
       properties:
         filters:
           $ref: "#/components/schemas/AccountDTO"
-          description: Filter criteria
         rangeFilters:
           $ref: "#/components/schemas/RangeFilter"
-          description: Range filters for numeric fields
         pagination:
           $ref: "#/components/schemas/PaginationRequest"
-          description: Pagination and sorting parameters
         options:
           $ref: "#/components/schemas/FilterOptions"
-          description: Filter options for customizing filter behavior
-      required:
-      - pagination
+      description: Generic filter request that includes both filter criteria and pagination
     PaginationRequest:
       type: object
-      description: "Represents a pagination request for retrieving paginated results,\
-        \ including page number, size, sort field, and direction."
       properties:
         pageNumber:
           type: integer
-          format: int32
-          default: 0
           description: The zero-based page number to retrieve.
+          format: int32
           example: 0
+          default: 0
         pageSize:
           type: integer
-          format: int32
-          default: 10
           description: The number of items per page.
+          format: int32
           example: 10
+          default: 10
         sortBy:
           type: string
           description: The field to sort the results by.
           example: name
         sortDirection:
           type: string
-          default: DESC
           description: "The direction of sorting, either ASC or DESC."
           example: DESC
+          default: DESC
+      description: "Represents a pagination request for retrieving paginated results,\
+        \ including page number, size, sort field, and direction."
     RangeFilter:
       type: object
-      description: Represents range filters for numeric fields
       properties:
         ranges:
           type: object
           additionalProperties:
             $ref: "#/components/schemas/RangeObject"
           description: Map of field names to their range criteria
+      description: Represents range filters for numeric fields
     RangeObject:
       type: object
-      description: Represents a range with from and to values
       properties:
         from:
+          type: object
           description: Start value of the range
         to:
+          type: object
           description: End value of the range
+      description: Represents a range with from and to values
     PaginationResponseAccountDTO:
       type: object
-      description: Represents a paginated response containing a list of items and
-        pagination metadata.
       properties:
         content:
           type: array
@@ -5575,17 +5570,26 @@ components:
             $ref: "#/components/schemas/AccountDTO"
         totalElements:
           type: integer
-          format: int64
           description: The total number of elements across all pages.
+          format: int64
         totalPages:
           type: integer
-          format: int32
           description: The total number of pages based on the data size and page size.
+          format: int32
         currentPage:
           type: integer
-          format: int32
           description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
     SpaceTransactionDTO:
+      required:
+      - accountSpaceId
+      - amount
+      - balanceAfterTransaction
+      - description
+      - transactionDateTime
+      - transactionType
       type: object
       properties:
         dateCreated:
@@ -5606,23 +5610,24 @@ components:
         amount:
           type: number
         balanceAfterTransaction:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         transactionDateTime:
           type: string
           format: date-time
         description:
-          type: string
           maxLength: 500
           minLength: 0
-        referenceId:
           type: string
+        referenceId:
           maxLength: 100
           minLength: 0
-        transactionType:
           type: string
+        transactionType:
           minLength: 1
           pattern: ^(DEPOSIT|WITHDRAWAL|TRANSFER_IN|TRANSFER_OUT|INTEREST|FEE)$
+          type: string
         spaceName:
           type: string
           readOnly: true
@@ -5630,35 +5635,37 @@ components:
           type: string
           format: uuid
           readOnly: true
-      required:
-      - accountSpaceId
-      - amount
-      - balanceAfterTransaction
-      - description
-      - transactionDateTime
-      - transactionType
     PaginationResponse:
       type: object
-      description: Represents a paginated response containing a list of items and
-        pagination metadata.
       properties:
         content:
           type: array
           description: The list of items for the current page.
-          items: {}
+          items:
+            type: object
+            description: The list of items for the current page.
         totalElements:
           type: integer
-          format: int64
           description: The total number of elements across all pages.
+          format: int64
         totalPages:
           type: integer
-          format: int32
           description: The total number of pages based on the data size and page size.
+          format: int32
         currentPage:
           type: integer
-          format: int32
           description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
     SpaceAnalyticsDTO:
+      required:
+      - accountId
+      - accountSpaceId
+      - endDate
+      - spaceName
+      - spaceType
+      - startDate
       type: object
       properties:
         accountSpaceId:
@@ -5668,9 +5675,9 @@ components:
           type: string
           format: uuid
         spaceName:
-          type: string
           maxLength: 100
           minLength: 0
+          type: string
         spaceType:
           type: string
           enum:
@@ -5687,45 +5694,53 @@ components:
           type: string
           format: date-time
         openingBalance:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         closingBalance:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         lowestBalance:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         highestBalance:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         averageBalance:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         netChange:
           type: number
         netChangePercentage:
-          type: number
           minimum: -100.0
+          exclusiveMinimum: false
+          type: number
         annualizedGrowthRate:
           type: number
         totalTransactions:
+          minimum: 0
           type: integer
           format: int32
-          minimum: 0
         incomingTransactions:
+          minimum: 0
           type: integer
           format: int32
-          minimum: 0
         outgoingTransactions:
+          minimum: 0
           type: integer
           format: int32
-          minimum: 0
         totalInflow:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         totalOutflow:
-          type: number
           minimum: 0.0
+          exclusiveMinimum: false
+          type: number
         averageTransactionAmount:
           type: number
         balanceHistory:
@@ -5751,13 +5766,6 @@ components:
         rankByGrowth:
           type: integer
           format: int32
-      required:
-      - accountId
-      - accountSpaceId
-      - endDate
-      - spaceName
-      - spaceType
-      - startDate
     TimeSeriesDataPoint:
       type: object
       properties:
@@ -5768,8 +5776,6 @@ components:
           type: number
     PaginationResponseAccountSpaceDTO:
       type: object
-      description: Represents a paginated response containing a list of items and
-        pagination metadata.
       properties:
         content:
           type: array
@@ -5778,70 +5784,60 @@ components:
             $ref: "#/components/schemas/AccountSpaceDTO"
         totalElements:
           type: integer
-          format: int64
           description: The total number of elements across all pages.
+          format: int64
         totalPages:
           type: integer
-          format: int32
           description: The total number of pages based on the data size and page size.
+          format: int32
         currentPage:
           type: integer
-          format: int32
           description: "The current page number, typically zero-based."
+          format: int32
+      description: Represents a paginated response containing a list of items and
+        pagination metadata.
     FilterRequestAccountSpaceDTO:
+      required:
+      - pagination
       type: object
-      description: Generic filter request that includes both filter criteria and pagination
       properties:
         filters:
           $ref: "#/components/schemas/AccountSpaceDTO"
-          description: Filter criteria
         rangeFilters:
           $ref: "#/components/schemas/RangeFilter"
-          description: Range filters for numeric fields
         pagination:
           $ref: "#/components/schemas/PaginationRequest"
-          description: Pagination and sorting parameters
         options:
           $ref: "#/components/schemas/FilterOptions"
-          description: Filter options for customizing filter behavior
+      description: Generic filter request that includes both filter criteria and pagination
+    FilterRequestAccountRestrictionDTO:
       required:
       - pagination
-    FilterRequestAccountRestrictionDTO:
       type: object
-      description: Generic filter request that includes both filter criteria and pagination
       properties:
         filters:
           $ref: "#/components/schemas/AccountRestrictionDTO"
-          description: Filter criteria
         rangeFilters:
           $ref: "#/components/schemas/RangeFilter"
-          description: Range filters for numeric fields
         pagination:
           $ref: "#/components/schemas/PaginationRequest"
-          description: Pagination and sorting parameters
         options:
           $ref: "#/components/schemas/FilterOptions"
-          description: Filter options for customizing filter behavior
+      description: Generic filter request that includes both filter criteria and pagination
+    FilterRequestAccountNotificationDTO:
       required:
       - pagination
-    FilterRequestAccountNotificationDTO:
       type: object
-      description: Generic filter request that includes both filter criteria and pagination
       properties:
         filters:
           $ref: "#/components/schemas/AccountNotificationDTO"
-          description: Filter criteria
         rangeFilters:
           $ref: "#/components/schemas/RangeFilter"
-          description: Range filters for numeric fields
         pagination:
           $ref: "#/components/schemas/PaginationRequest"
-          description: Pagination and sorting parameters
         options:
           $ref: "#/components/schemas/FilterOptions"
-          description: Filter options for customizing filter behavior
-      required:
-      - pagination
+      description: Generic filter request that includes both filter criteria and pagination
   securitySchemes:
     assetPriceBearer:
       type: http
