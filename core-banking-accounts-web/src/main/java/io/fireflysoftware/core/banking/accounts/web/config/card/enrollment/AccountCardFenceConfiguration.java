@@ -8,7 +8,7 @@ import io.r2dbc.postgresql.*;
 import io.r2dbc.postgresql.client.SSLMode;
 import java.time.Clock;
 import java.util.*;
-import org.fireflyframework.core.transaction.OwnedLeaseConnectionFactory;
+import org.fireflyframework.core.transaction.OwnedLeaseConnectionFactoryImpl;
 import org.fireflyframework.security.spi.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.*;
@@ -66,7 +66,7 @@ public class AccountCardFenceConfiguration {
         var delegate = new PostgresqlConnectionFactory(PostgresqlConnectionConfiguration.builder()
                 .host(profile.host()).port(profile.port()).database(profile.database()).username(profile.username())
                 .password(profile.password()).sslMode(profile.sslMode()).build());
-        var factory = new OwnedLeaseConnectionFactory(delegate);var client = DatabaseClient.create(factory);
+        var factory = new OwnedLeaseConnectionFactoryImpl(delegate);var client = DatabaseClient.create(factory);
         var template = new R2dbcEntityTemplate(client, original.getDataAccessStrategy());
         template.setBeanFactory(application);template.setApplicationContext(application);
         return new AccountCardFenceSession(role, factory, client, template, new R2dbcTransactionManager(factory));

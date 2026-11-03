@@ -75,7 +75,7 @@ class AccountCardFenceNativeIT {
                 .option(ConnectionFactoryOptions.USER,role).option(ConnectionFactoryOptions.PASSWORD,secret).build());
     }
     static AccountCardFenceSession session(boolean reader) {
-        var factory=new OwnedLeaseConnectionFactory(factory(reader?"accounts_card_test_reader":"firefly_audit_writer",reader?readerPassword:writerPassword));
+        var factory=new OwnedLeaseConnectionFactoryImpl(factory(reader?"accounts_card_test_reader":"firefly_audit_writer",reader?readerPassword:writerPassword));
         var client=DatabaseClient.create(factory);var template=template(client);
         return new AccountCardFenceSession(reader?AccountCardFenceSession.Role.READER:AccountCardFenceSession.Role.COMMAND,factory,client,template,new R2dbcTransactionManager(factory));
     }

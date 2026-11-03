@@ -6,7 +6,7 @@ import io.fireflysoftware.core.banking.accounts.models.repositories.card.enrollm
 import java.time.Duration;
 import java.util.Objects;
 import org.fireflyframework.core.transaction.*;
-import org.fireflyframework.core.transaction.impl.DefaultBoundedRootTransaction;
+import org.fireflyframework.core.transaction.impl.DefaultBoundedRootTransactionImpl;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.data.r2dbc.repository.support.R2dbcRepositoryFactory;
 import org.springframework.r2dbc.connection.R2dbcTransactionManager;
@@ -21,14 +21,14 @@ public final class AccountCardFenceSession {
     private final AccountCardFenceNativeRepository nativeRepository;
     private final BoundedRootTransaction transactions;
 
-    public AccountCardFenceSession(Role role, OwnedLeaseConnectionFactory factory, DatabaseClient client,
+    public AccountCardFenceSession(Role role, OwnedLeaseConnectionFactoryImpl factory, DatabaseClient client,
             R2dbcEntityTemplate operations, R2dbcTransactionManager manager) {
         this.role = Objects.requireNonNull(role);
         this.resources = BoundedR2dbcResources.verify(factory, client, operations, manager);
         this.operations = operations;
         this.store = new AccountCardFenceStoreImpl(operations);
         this.nativeRepository = new R2dbcRepositoryFactory(operations).getRepository(AccountCardFenceNativeRepository.class);
-        this.transactions = new DefaultBoundedRootTransaction(resources,
+        this.transactions = new DefaultBoundedRootTransactionImpl(resources,
                 new CleanupPolicy(Duration.ofSeconds(2), Duration.ofSeconds(2)));
     }
     public Role role() { return role; }

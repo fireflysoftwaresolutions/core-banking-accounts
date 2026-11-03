@@ -38,8 +38,8 @@ final class AccountCardFenceAuditImpl {
                         return new AuditAppendAuthority.Permit(event.stream(), event.actor(), permit.effectiveUntil());
                     }));
             UUID nonce = ids.get();
-            var append = new SpringDataTransactionalAuditAppender(resources, client, template, resources.manager(), admission, clock, nanos, () -> nonce);
-            var completed = new SpringDataCompletedAuditAppendService(resources, client, template, resources.manager(), clock, nanos);
+            var append = new SpringDataTransactionalAuditAppenderImpl(resources, client, template, resources.manager(), admission, clock, nanos, () -> nonce);
+            var completed = new SpringDataCompletedAuditAppendServiceImpl(resources, client, template, resources.manager(), clock, nanos);
             return append.append(scope, event).flatMap(provisional -> {
                 if (provisional.replay() != replay) return Mono.error(invalid());
                 return completed.requireCompleted(scope, nonce, provisional).switchIfEmpty(Mono.error(invalid())).flatMap(record -> {
