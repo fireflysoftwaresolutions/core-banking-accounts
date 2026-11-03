@@ -20,7 +20,30 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-security-adapter-opa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-security-resource-server</artifactId>
+        </dependency>
         <!-- Internal modules -->
+        <dependency>
+            <groupId>io.fireflysoftware</groupId>
+            <artifactId>core-banking-accounts-sdk</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>io.fireflysoftware</groupId>
             <artifactId>core-banking-accounts-core</artifactId>
@@ -34,6 +57,10 @@
         <dependency>
             <groupId>org.fireflyframework</groupId>
             <artifactId>fireflyframework-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-cache-postgres</artifactId>
         </dependency>
 
         <!-- Spring Boot -->

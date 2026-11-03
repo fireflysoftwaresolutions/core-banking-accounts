@@ -18,13 +18,6 @@
     </properties>
 
     <dependencies>
-        <!-- Web module for OpenAPI spec -->
-        <dependency>
-            <groupId>io.fireflysoftware</groupId>
-            <artifactId>core-banking-accounts-web</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- OpenAPI / Jackson — versions managed by fireflyframework-parent BOM -->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
@@ -91,11 +84,48 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>mirror-producer-openapi-compatibility-resource</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/api-spec</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/resources</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>openapi.yml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- OpenAPI Generator Maven Plugin — version from fireflyframework-parent (7.26.0) -->
             <plugin>
@@ -116,6 +146,9 @@
                             <apiPackage>io.fireflysoftware.core.banking.accounts.sdk.api</apiPackage>
                             <modelPackage>io.fireflysoftware.core.banking.accounts.sdk.model</modelPackage>
                             <invokerPackage>io.fireflysoftware.core.banking.accounts.sdk.invoker</invokerPackage>
+                            <schemaMappings>
+                                <schemaMapping>FireflyInstant=java.time.Instant</schemaMapping>
+                            </schemaMappings>
                             <configOptions>
                                 <java20>true</java20>
                                 <useTags>true</useTags>
